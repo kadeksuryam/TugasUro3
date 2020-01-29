@@ -8,6 +8,26 @@ int mini(int a, int b){
 	else return b;
 }
 
+bool cekLosing(Person *Hilmys){
+	if((Health(*Hilmys) == 0) || (Social(*Hilmys) == 0) || (Hygienic(*Hilmys) == 0) || (Hygienic(*Hilmys) == 0)) return true;
+	return false;
+}
+
+bool cekWinning(Person *Hilmys){
+	if((Health(*Hilmys) == 100) && (Social(*Hilmys) == 100) && (Hygienic(*Hilmys) == 100) && (Hygienic(*Hilmys) == 100)) return true;
+	return false;
+}
+
+void printStat(Person *Hilmys, activities *Act){
+	printf("\n");
+	printf("Saat ini stat dari Hilmys adalah: \n");
+	printf("%s%d%s","[Health: ", Health(*Hilmys), "]\n");
+	printf("%s%d%s","[Social: ", Social(*Hilmys), "]\n");
+	printf("%s%d%s","[Hygienic: ", Hygienic(*Hilmys), "]\n");
+	printf("%s%d%s","[Money: ", Hygienic(*Hilmys), "]\n");
+	printf("\n");
+}
+
 void kurangStat(Person *Hilmys, int health, int social, int hygienic, int money){
 	Health(*Hilmys) -= health;
 	Social(*Hilmys) -= social;
@@ -22,7 +42,7 @@ void tambahStat(Person *Hilmys, int health, int social, int hygienic, int money)
 	Money(*Hilmys) = mini(money+Money(*Hilmys), 100);
 }
 
-bool isEnough(int userVal, int param){
+bool isEnoughStat(int userVal, int param){
 	if(userVal < param) return false;
 	return true;
 }
@@ -56,7 +76,7 @@ void init(Person *Hilmys, activities *Act, int val){
 }
 
 void doTidur(Person *Hilmys, activities *Act){
-	bool canIt = (isEnough(Health(*Hilmys), (*Act).Tidur.healthReq) && isEnough(Social(*Hilmys), (*Act).Tidur.socialReq) && isEnough(Hygienic(*Hilmys), (*Act).Tidur.hygienicReq) && isEnough(Money(*Hilmys), (*Act).Tidur.moneyReq));
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Tidur.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Tidur.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Tidur.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).Tidur.moneyReq));
 	if(canIt){
 		kurangStat(Hilmys, (*Act).Tidur.healthReq , (*Act).Tidur.socialReq, (*Act).Tidur.hygienicReq, (*Act).Tidur.moneyReq);
 		tambahStat(Hilmys, 5, 0, 0, 0);
