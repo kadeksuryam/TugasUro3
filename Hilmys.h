@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include<stdlib.h>
+#include<stdbool.h>
 
 //Struct
 typedef struct{
@@ -24,18 +25,24 @@ typedef struct{
 #define Hygienic(P) (P).hygienic
 #define Money(P) (P).money
 #define Social(P) (P).social
+/*
 #define Makan(P) (P).Makan
 #define Tidur(P) (P).Tidur
-#define Mandi(P) (P).Mandi
-#define HealthReq(P) (P).healthReq
-#define HygienicReq(P) (P).hygienicReq
-#define MoneyReq(P) (P).moneyReq
-#define SocialReq(P) (P).socialReq
+#define Mandi(P) (P).Mandi */
+
+#define HealthReq(P, i) (P).healthReq = i
+#define HygienicReq(P) (P).hygienicReq = i
+#define MoneyReq(P, i) (P).moneyReq = i
+#define SocialReq(P, i) (P).socialReq = i
 
 //Konstruktor
-void init(Person *Hilmys, int val);
-void doMakan(Person *Hilmys);
-void doTidur(Person *Hilmys);
-void doMandi(Person *Hilmys);
+void kurangStat(Person *Hilmys, int health, int social, int hygienic, int money);
+void tambahStat(Person *Hilmys, int health, int social, int hygienic, int money);
+bool isEnough(int param, int userVal);
+void init(Person *Hilmys, activities *Act,  int val);
+void doMakan(Person *Hilmys, activities *Act);
+void doTidur(Person *Hilmys, activities *Act);
+void doMandi(Person *Hilmys, activities *Act);
+
 
 #endif
