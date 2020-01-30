@@ -68,4 +68,9 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).MCK.socialReq = 5;
 		(*Act).MCK.hygienicReq = 5;
 		(*Act).MCK.moneyReq = 5;
+	
+		(*Act).bkj.healthReq = 0;
+		(*Act).bkj.socialReq = 0;
+		(*Act).bkj.hygienicReq = 5;
+		(*Act).bkj.moneyReq = 5;	//Naik gojek(?)
 }
