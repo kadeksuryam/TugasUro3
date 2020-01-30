@@ -16,7 +16,8 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			int pil; bool cekTidur = true, cekMakan = true, cekMCK = true; time_t snt_tidur=start, snt_makan=start, snt_mck=start;
 			printf("\nSilahkan pilih kegiatan yang ingin dilakukan: \n");
 			printf("1. Tidur	2. Makan\n");
-			printf("3. Mandi	0. Stats\n");
+			printf("3. Mandi	4. Berkunjung\n");
+			printf("0.Stats\n");
 			printf("-1. Aturan Poin untuk setiap kegiatan\n");
 			printf("Pilihan Anda [dalam angka diatas]: ");
 			scanf("%d", &pil);
@@ -112,6 +113,18 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			}
 		}
 		
+}
+
+void doBerkunjung(Person *Hilmys, activities *Act)
+{
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).bkj.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).bkj.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).bkj.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).bkj.moneyReq));
+	if (canIt)
+	{
+		tambahStat(Hilmys, 0, 30, 0, 0);
+		kurangStat(Hilmys, (*Act).bkj.healthReq , (*Act).bkj.socialReq, (*Act).bkj.hygienicReq, (*Act).bkj.moneyReq);
+	}
+	
+	return;
 }
 
 void doTidur(Person *Hilmys, activities *Act){

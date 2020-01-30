@@ -17,6 +17,7 @@ typedef struct{
 	ActAttribute Makan;
 	ActAttribute Tidur;
 	ActAttribute MCK;
+	ActAttribute bkj; //Berkunjung ke rumah tetangga
 }activities; 
 
 //Stats Hilmys's
@@ -58,6 +59,7 @@ void init(Person *Hilmys, activities *Act,  int val);
 void doTidur(Person *Hilmys, activities *Act);
 void doMakan(Person *Hilmys, activities *Act);
 void doMCK(Person *Hilmys, activities *Act);
+void doBerkunjung(Person *Hilmys, activities *Act);
 
 
 
