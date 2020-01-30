@@ -5,7 +5,7 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-//====================Struct======================
+//====================Konstruktor======================
 
 //Atribut dari aktivitas
 typedef struct{
@@ -16,7 +16,7 @@ typedef struct{
 typedef struct{
 	ActAttribute Makan;
 	ActAttribute Tidur;
-	ActAttribute Mandi;
+	ActAttribute MCK;
 }activities; 
 
 //Stats Hilmys's
@@ -38,9 +38,8 @@ typedef struct{
 
 
 
-//===============Konstruktor========================
+//===============Fungsi/Prosedur Tambahan========================
 
-//Bagian fungsi/prosedur tambahan
 int mini(int a, int b);
 
 //Bagian Stat
@@ -50,14 +49,16 @@ void printStat(Person *Hilmys, activities *Act);
 void kurangStat(Person *Hilmys, int health, int social, int hygienic, int money);
 void tambahStat(Person *Hilmys, int health, int social, int hygienic, int money);
 bool isEnoughStat(int param, int userVal);
+void pilihKegiatan(Person *Hilmys, activities *Act);
 
 //Bagian inisialisasi awal
 void init(Person *Hilmys, activities *Act,  int val);
 
 //Bagian Kegiatan
-void doMakan(Person *Hilmys, activities *Act);
 void doTidur(Person *Hilmys, activities *Act);
-void doMandi(Person *Hilmys, activities *Act);
+void doMakan(Person *Hilmys, activities *Act);
+void doMCK(Person *Hilmys, activities *Act);
+
 
 
 #endif

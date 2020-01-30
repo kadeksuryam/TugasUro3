@@ -3,13 +3,8 @@
 #include<stdbool.h>
 #include "Hilmys.h"
 
-int mini(int a, int b){
-	if(a <= b) return a;
-	else return b;
-}
-
 bool cekLosing(Person *Hilmys){
-	if((Health(*Hilmys) == 0) || (Social(*Hilmys) == 0) || (Hygienic(*Hilmys) == 0) || (Hygienic(*Hilmys) == 0)) return true;
+	if((Health(*Hilmys) == 0))) return true;
 	return false;
 }
 
@@ -66,36 +61,11 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).Makan.healthReq = 5; //untuk makan perlu sehat dan ada uang
 		(*Act).Makan.socialReq = 0;
 		(*Act).Makan.hygienicReq = 0; 
-		(*Act).Makan.moneyReq = 5;
+		(*Act).Makan.moneyReq = 0; 
 		
 		//inisialisasi aktivitas Mandi
-		(*Act).Mandi.healthReq = 5; //untuk mandi perlu sehat dan ada uang buat beli sabun :v
-		(*Act).Mandi.socialReq = 5;
-		(*Act).Mandi.hygienicReq = 5;
-		(*Act).Mandi.moneyReq = 5;
+		(*Act).MCK.healthReq = 5; //untuk mandi perlu sehat dan ada uang buat beli sabun :v
+		(*Act).MCK.socialReq = 5;
+		(*Act).MCK.hygienicReq = 5;
+		(*Act).MCK.moneyReq = 5;
 }
-
-void doTidur(Person *Hilmys, activities *Act){
-	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Tidur.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Tidur.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Tidur.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).Tidur.moneyReq));
-	if(canIt){
-		kurangStat(Hilmys, (*Act).Tidur.healthReq , (*Act).Tidur.socialReq, (*Act).Tidur.hygienicReq, (*Act).Tidur.moneyReq);
-		tambahStat(Hilmys, 5, 0, 0, 0);
-	}
-	else puts("Stat anda kurang mencukupi untuk melakukan kegiatan ini");
-	return;	 	 
-}
-
-/*
-void doMakan(Person *Hilmys, activities *Act){
-	bool canIt = (isEnough(Health(*Hilmys)) && isEnough(Social(*Hilmys)) && isEnough(Hygienic(*Hilmys)) && isEnough(Money(*Hilmys)));
-	if(canIt) kurangStat(*Hilmys, HealthReq(Makan(*Act)), SocialReq(Makan(*Act)), Hygienic(Makan(*Act)), MoneyReq(Makan(*Act)));
-	else puts("Stat anda kurang mencukupi untuk melakukan kegiatan ini");
-	return;
-}
-
-void doMandi(Person *Hilmys, activities *Act){
-	bool canIt = (isEnough(Health(*Hilmys)) && isEnough(Social(*Hilmys)) && isEnough(Hygienic(*Hilmys)) && isEnough(Money(*Hilmys)));
-	if(canIt) kurangStat(*Hilmys, HealthReq(Mandi(*Act)), SocialReq(Mandi(*Act)), Hygienic(Mandi(*Act)), MoneyReq(Mandi(*Act)));
-	else puts("Stat anda kurang mencukupi untuk melakukan kegiatan ini");
-	return;
-} */
