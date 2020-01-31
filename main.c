@@ -11,7 +11,7 @@ int main(){
 	//Mulai
 		printf("|========================================= Selamat datang di Hilmys's Life ===============================================|\n");
 		printf("| Tujuan game ini adalah membuat semua stat Hilmys menjadi 100                                                            |\n");
-		printf("| Pada awalnya, semua stat Hilmys akan bernilai 5, jadi gunakan dengan baik                                               |\n");
+		printf("| Pada awalnya, semua stat Hilmys akan bernilai 5, kecuali uang yang awalnya 50 koin jadi gunakan dengan baik             |\n");
 		printf("| Setiap kegiatan memiliki 'Harga' yang harus dibayar, jika kegiatan tersebut berhasil dilakukan maka stat akan bertambah |\n");
 		printf("| Disaat salah satu stat anda bernilai 0, anda akan langsung kalah                                                        |\n");
 		printf("| [Catatan : Durasi game ini adalah 15 menit setelah 15 menit Hilmys akan meninggal dunia dan Anda otomatis akan kalah!]  |\n");

@@ -4,6 +4,7 @@
 #include<time.h>
 #include "Hilmys.h"
 
+
 int mini(int a, int b){
 	if(a <= b) return a;
 	else return b;
@@ -15,10 +16,10 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 		//=====input kegiatan oleh user====
 			int pil; bool cekTidur = true, cekMakan = true, cekMCK = true; time_t snt_tidur=start, snt_makan=start, snt_mck=start;
 			printf("\nSilahkan pilih kegiatan yang ingin dilakukan: \n");
-			printf("1. Tidur	2. Makan\n");
-			printf("3. Mandi	4. Berkunjung\n");
-			printf("0.Stats\n");
-			printf("-1. Aturan Poin untuk setiap kegiatan\n");
+			printf("1. Tidur       2. Makan\n");
+			printf("3. Mandi       4. Berkunjung\n");
+			printf("5. Gambling    0. Stats\n");
+			printf("11. Aturan Main dan Poin\n");
 			printf("Pilihan Anda [dalam angka diatas]: ");
 			scanf("%d", &pil);
 			
@@ -45,15 +46,16 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 				snt_mck = time(NULL);
 				printf("MCK sudah selesai\n");
 			}
-			else if(pil == 0){
-				printStat(Hilmys, Act);
-			}
+			else if(pil == 4) doBerkunjung(Hilmys, Act);
+			else if(pil == 5) doGambling(Hilmys, Act);
+			else if(pil == 0) printStat(Hilmys, Act);
 			else if(pil == -1){
 				//Dokumentasi aturan poin
 			}
 			else printf("Pilihan yang anda masukkan salah silahkan pilih kegiatan kembali\n");
 			
-			//======Pegecekan berbagai prasyarat===========
+			//yang perlu di cek hanyalah tidur, makan dan mck karena berkontribusi besar dengan health
+			//======Pegecekan berbagai prasyarat HEALTH===========
 			time_t end = time(NULL);
 		//================PRASYARAT UNTUK TIDUR===================
 			//Jika sudah durasi sebelum tidur sudah 5 menit Hilmys harus tidur
@@ -117,19 +119,18 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 
 void doBerkunjung(Person *Hilmys, activities *Act)
 {
-	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).bkj.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).bkj.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).bkj.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).bkj.moneyReq));
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).bkj.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).bkj.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).bkj.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).bkj.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).bkj.happinessReq));
 	if (canIt)
 	{
-		tambahStat(Hilmys, 0, 30, 0, 0);
-		kurangStat(Hilmys, (*Act).bkj.healthReq , (*Act).bkj.socialReq, (*Act).bkj.hygienicReq, (*Act).bkj.moneyReq);
+		tambahStat(Hilmys, 0, 30, 0, 0,0);
+		kurangStat(Hilmys, (*Act).bkj.healthReq , (*Act).bkj.socialReq, (*Act).bkj.hygienicReq, (*Act).bkj.moneyReq, (*Act).bkj.happinessReq);
 	}
-	
 	return;
 }
 
 void doTidur(Person *Hilmys, activities *Act){
-	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Tidur.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Tidur.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Tidur.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).Tidur.moneyReq));
-	if(canIt) tambahStat(Hilmys, 5, 0, 0, 0);
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Tidur.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Tidur.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Tidur.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).Tidur.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).Tidur.happinessReq));
+	if(canIt) tambahStat(Hilmys, 5, 0, 0, 0,0);
 	return;	 	 
 }
 
@@ -144,31 +145,48 @@ void doMakan(Person *Hilmys, activities *Act){
 	printf("| 3. Ramen      |     20 Koin   |\n");
 	scanf("%d", &pil);
 	if(pil == 1){
-		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 5));
+		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 5) && isEnoughStat(Happiness(*Hilmys), (*Act).Makan.happinessReq));
 		if(!canIt) printf("Stat anda tidak mencukupi, silahkan sesuaikan dengan syarat yang diberikan\n");
-		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 5);
+		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 5, (*Act).Makan.happinessReq);
 		
 	}
 	else if(pil == 2){
-		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 15));
+		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 15) && isEnoughStat(Happiness(*Hilmys), (*Act).Makan.happinessReq));
 		if(!canIt) printf("Stat anda tidak mencukupi, silahkan sesuaikan dengan syarat yang diberikan\n");
-		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 15);
+		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 15, (*Act).Makan.happinessReq);
 	}
 	else if(pil == 3){
-		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 20));
+		bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Makan.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Makan.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Makan.hygienicReq) && isEnoughStat(Money(*Hilmys), 20) && isEnoughStat(Happiness(*Hilmys), (*Act).Makan.happinessReq));
 		if(!canIt) printf("Stat anda tidak mencukupi, silahkan sesuaikan dengan syarat yang diberikan\n");
-		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 20);
+		else kurangStat(Hilmys, (*Act).Makan.healthReq , (*Act).Makan.socialReq, (*Act).Makan.hygienicReq, 20, (*Act).Makan.happinessReq);
 	}
 	return;	
 }
 
 void doMCK(Person *Hilmys, activities *Act){
-	
-	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).MCK.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).MCK.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).MCK.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).MCK.moneyReq));
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).MCK.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).MCK.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).MCK.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).MCK.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).MCK.happinessReq));
 	if(canIt){
-		kurangStat(Hilmys, (*Act).MCK.healthReq , (*Act).MCK.socialReq, (*Act).MCK.hygienicReq, (*Act).MCK.moneyReq);
-		tambahStat(Hilmys, 5, 0, 20, 0);
+		kurangStat(Hilmys, (*Act).MCK.healthReq , (*Act).MCK.socialReq, (*Act).MCK.hygienicReq, (*Act).MCK.moneyReq, (*Act).MCK.happinessReq);
+		tambahStat(Hilmys, 5, 0, 20, 0, 0);
 	}
 	return;
 } 
 
+void doGambling(Person *Hilmys, activities *Act){
+	//bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).Gambling.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).Gambling.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).Gambling.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).Gambling.moneyReq));
+	int pil;
+	printf("======Selamat datang di Arena Gambling======\n");
+	printf("Silahkan pilih game yang anda ingin mainkan!\n");
+	printf("1. Tebak Angka                 2. Sticks134 Game \n");
+	printf("Pilihan Anda: ");
+	scanf("%d", &pil);
+	if(pil == 1){
+		tebakAngka(Hilmys);
+		printf("\n");
+		printf("Terimakasih telah bermain Game Tebak Angka :)\n");
+	}
+	else if(pil == 2){
+		sticksGame(Hilmys);
+		printf("Terimakasih telah bermain Sticks Game :)\n");
+	}
+}
