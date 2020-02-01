@@ -95,4 +95,10 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).Olahraga.hygienicReq = 0;
 		(*Act).Olahraga.moneyReq = 0;
 		(*Act).Olahraga.happinessReq = 0;
+		
+		(*Act).NontonAnime.healthReq = 0;
+		(*Act).NontonAnime.socialReq = 0;
+		(*Act).NontonAnime.hygienicReq = 0;
+		(*Act).NontonAnime.moneyReq = 0;
+		(*Act).NontonAnime.happinessReq = 0;
 }

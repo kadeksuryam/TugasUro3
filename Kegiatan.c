@@ -21,9 +21,10 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 		//==========input kegiatan oleh user===========
 			int pil; 
 			printf("\nSilahkan pilih kegiatan yang ingin dilakukan: \n");
-			printf("1. Tidur       2. Makan\n");
-			printf("3. MCK         4. Berkunjung\n");
-			printf("5. Gambling    6. Olahraga\n");
+			printf("1. Tidur         2. Makan\n");
+			printf("3. MCK           4. Berkunjung\n");
+			printf("5. Gambling      6. Olahraga\n");
+			printf("7. Nonton Anime  8. \n");
 			printf("0. Stats\n");
 			printf("11. Poin Setiap Kegiatan\n");
 			printf("Pilihan Anda [dalam angka diatas]: ");
@@ -66,6 +67,7 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			}
 			else if(pil == 5) doGambling(Hilmys, Act);	
 			else if(pil == 6) doOlahraga(Hilmys, Act);
+			else if(pil == 7) doNontonAnime(Hilmys, Act);
 			else if(pil == 0) printStat(Hilmys, Act);
 			else if(pil == 11){
 				//Dokumentasi aturan poin
@@ -253,6 +255,8 @@ void doGambling(Person *Hilmys, activities *Act){
 
 void doOlahraga(Person *Hilmys, activities *Act){
 	int pil;
+	//Lari keliling lapangan perlu uang untuk gojek
+	//Competitive Programming perlu uang untuk beli snack :v
 	printf("Pilih Olahraga yang ingin dilakukan\n");
 	printf("1. Jalan Santai                    2. Lari Keliling Lapangan\n");
 	printf("3. Bermain Catur                   4. Competitive Programming\n");
@@ -268,17 +272,17 @@ void doOlahraga(Person *Hilmys, activities *Act){
 		}
 	}
 	else if(pil == 2){
-		if(((*Hilmys).health < 10)){
+		if(((*Hilmys).health < 10) || (*Hilmys).money < 10){
 			printf("=====Health Hilmys tidak mencukupi untuk Lari Keliling Lapangan :( =====\n");
 		}
 		else{
-			kurangStat(Hilmys, 10, 0, 0, 0, 0);
+			kurangStat(Hilmys, 10, 0, 0, 5, 0);
 			tambahStat(Hilmys, 10, 0, 0, 0, 10);
 			printf("=====Lari Keliling Lapangan sudah selesai!=====\n");
 		}
 	}
 	else if(pil == 4){
-		if((*Hilmys).health < 10){
+		if((*Hilmys).health < 10 || (*Hilmys).money< 10){
 			printf("=====Health Hilmys tidak mencukupi untuk CP :( =====\n");
 			return;
 		}
@@ -307,12 +311,12 @@ void doOlahraga(Person *Hilmys, activities *Act){
 			scanf(" %d", &pilUser);
 			if(pilUser == hasil){
 				printf("=====Anda benar!, Sekarang Hilmys sudah bisa menemukan rumus umum dari permasalahan tersebut sehingga nilai happinessnya bertambah 20 :)=====\n");
-				kurangStat(Hilmys, 10, 0, 0, 0, 0);
+				kurangStat(Hilmys, 10, 0, 0, 5, 0);
 				tambahStat(Hilmys, 10, 0, 0, 0, 20);
 			}
 			else{
 				printf("=====Anda salah!, Hilmys pun hanya bisa mengerjakan sebagian subtask, sehingga nilai happiness yang ia dapatkan hanyalah 5=====\n");
-				kurangStat(Hilmys, 10, 0, 0, 0, 0);
+				kurangStat(Hilmys, 10, 0, 0, 5, 0);
 				tambahStat(Hilmys, 5, 0, 0, 0, 5);
 			}
 		}
@@ -328,4 +332,58 @@ void doOlahraga(Person *Hilmys, activities *Act){
 		}
 	}
 	
+}
+
+void doNontonAnime(Person *Hilmys, activities *Act){
+	int pil;
+	if((*Hilmys).health < 10){
+		printf("=====Hilmys tidak cukup sehat untuk menonton anime :( =====\n");
+		return;
+	}
+	printf("Pilih anime yang ingin ditonton\n");
+	printf("1. 君の名は         [10 koin]    2. 秒速5センチメートル [10 koin]\n");
+	printf("3. 男子高校生の日常 [15 koin]   4. デスノート         [15 koin]\n");
+	scanf(" %d", &pil);
+	while(pil < 1 || pil > 4){
+		printf("==Silahkan pilih dengan nomor yang benar!==\n");
+		printf("Pilih anime yang ingin ditonton: ");
+		scanf(" %d", &pil);
+	}
+	if(pil == 1){
+		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		else{
+			printf("=====Hilmys selesai menonton kimi no nawa=====\n");
+			printf("=====Karena anime ini sangat menyentuh hati, happiness dari Hilmys pun bertambah 10=====");
+			kurangStat(Hilmys, 0, 0, 0, 10, 0);
+			tambahStat(Hilmys, 0, 0, 0, 0, 10);
+		}
+	}
+	else if(pil == 2){
+		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		else{
+			printf("=====Hilmys selesai menonton 5 cm per second=====\n");
+			printf("=====Karena anime ini sangat menyedihkan, happiness dari Hilmys pun berkurang 5=====");
+			kurangStat(Hilmys, 0, 0, 0, 10, 0);
+			tambahStat(Hilmys, 0, 0, 0, 0, -5);
+		}
+	}
+	else if(pil == 3){
+		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		else{
+			printf("=====Hilmys selesai menonton Danshi Koukousei no Nichijou=====\n");
+			printf("=====Karena anime ini sangat lucu, happiness dari Hilmys pun bertambah 15=====");
+			kurangStat(Hilmys, 0, 0, 0, 15, 0);
+			tambahStat(Hilmys, 0, 0, 0, 0, 15);
+		}
+	}
+	else if(pil == 4){
+		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		else{
+			printf("=====Hilmys selesai menonton Death Note=====\n");
+			printf("=====Karena anime ini sangat suram, happiness dari Hilmys pun berkurang 10=====");
+			kurangStat(Hilmys, 0, 0, 0, 15, 0);
+			tambahStat(Hilmys, 0, 0, 0, 0, -10);
+		}
+	}
+	printf("\n");
 }
