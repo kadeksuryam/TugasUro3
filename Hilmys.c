@@ -108,4 +108,16 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).Quiz.hygienicReq = 0;
 		(*Act).Quiz.moneyReq = 0;
 		(*Act).Quiz.happinessReq = 0;
+	
+		(*Act).pmdA.healthReq = 0; //ke Pemandian Air Panas
+		(*Act).pmdA.socialReq = 0;
+		(*Act).pmdA.hygienicReq = 0;
+		(*Act).pmdA.moneyReq = 15;	
+		(*Act).pmdA.happinessReq = 0;
+	
+		(*Act).pancing.healthReq = 5; //Pergi Memancing
+		(*Act).pancing.socialReq = 0;
+		(*Act).pancing.hygienicReq = 5;
+		(*Act).pancing.moneyReq = 0;	
+		(*Act).pancing.happinessReq = 0;
 }
