@@ -22,6 +22,8 @@ typedef struct{
 	ActAttribute Olahraga;
 	ActAttribute NontonAnime;
 	ActAttribute Quiz;
+	ActAttribute pancing; // Memancing
+	ActAttribute pmdA;	//ke Pemandian Air Panas
 }activities; 
 
 //Stats Hilmys's
@@ -68,6 +70,8 @@ void doGambling(Person *Hilmys, activities *Act); //Money
 void doOlahraga(Person *Hilmys, activities *Act); //Happiness
 void doNontonAnime(Person *Hilmys, activities *Act);
 void doQuiz(Person *Hilmys, activities *Act);
+void doPemandianAirPanas(Person *Hilmys, activities *Act); //Health, Happines, Hygienic
+void doMemancing(Person *Hilmys, activities *Act); //Happines, money, social
 
 //Bagian Side Game
 void tebakAngka(Person *Hilmys);
