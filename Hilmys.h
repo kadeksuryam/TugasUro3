@@ -19,6 +19,7 @@ typedef struct{
 	ActAttribute MCK;
 	ActAttribute bkj; //Berkunjung ke rumah tetangga
 	ActAttribute Gambling;
+	ActAttribute Olahraga;
 }activities; 
 
 //Stats Hilmys's
@@ -62,8 +63,10 @@ void doMakan(Person *Hilmys, activities *Act); //Health
 void doMCK(Person *Hilmys, activities *Act); //Health
 void doBerkunjung(Person *Hilmys, activities *Act); //Social
 void doGambling(Person *Hilmys, activities *Act); //Money
+void doOlahraga(Person *Hilmys, activities *Act); //Happiness
 
-//Bagian Game
+
+//Bagian Side Game
 void tebakAngka(Person *Hilmys);
 void sticksGame(Person *Hilmys);
 

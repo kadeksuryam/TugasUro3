@@ -4,7 +4,7 @@
 #include "Hilmys.h"
 
 bool cekLosing(Person *Hilmys){
-	if((Health(*Hilmys) == 0)) return true;
+	if((Health(*Hilmys) == 0) && (Social(*Hilmys) == 0) && (Hygienic(*Hilmys) == 0) && (Money(*Hilmys) == 0) && (Happiness(*Hilmys) == 0)) return true;
 	return false;
 }
 
@@ -51,7 +51,7 @@ void init(Person *Hilmys, activities *Act, int val){
 		Health(*Hilmys) = val;
 		Social(*Hilmys) = val;
 		Hygienic(*Hilmys) = val;
-		Money(*Hilmys) = 50;
+		Money(*Hilmys) = 30;
 		Happiness(*Hilmys) = val;
 		//Selesai
 	//Inisialisasi Activities
@@ -60,27 +60,39 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).Tidur.socialReq = 0;
 		(*Act).Tidur.hygienicReq = 0;
 		(*Act).Tidur.moneyReq = 0;
+		(*Act).Tidur.happinessReq = 0;
 		
 		//inisialisasi aktivitas Makan
 		//tidak perlu inisialisasi keperluan uang, nanti tergantung pilihan menu 
 		(*Act).Makan.healthReq = 5; //untuk makan perlu sehat dan ada uang
 		(*Act).Makan.socialReq = 0;
 		(*Act).Makan.hygienicReq = 0; 
+		(*Act).Makan.moneyReq = 0;
+		(*Act).Makan.happinessReq = 0;
 		
-		//inisialisasi aktivitas Mandi
-		(*Act).MCK.healthReq = 5; //untuk mandi perlu sehat dan ada uang buat beli sabun :v
+		//inisialisasi aktivitas MCK
+		(*Act).MCK.healthReq = 5; //untuk MCK perlu sehat dan ada uang buat beli sabun :v
 		(*Act).MCK.socialReq = 0;
-		(*Act).MCK.hygienicReq = 5;
+		(*Act).MCK.hygienicReq = 0;
 		(*Act).MCK.moneyReq = 5;
-	
+		(*Act).MCK.happinessReq = 0;
+		
 		(*Act).bkj.healthReq = 0;
 		(*Act).bkj.socialReq = 0;
 		(*Act).bkj.hygienicReq = 5;
 		(*Act).bkj.moneyReq = 5;	//Naik gojek(?)
+		(*Act).bkj.happinessReq = 0;
 		
-		//tidak perlu inisialisasi keperluan uang dulu, nanti tergantung bet
-		(*Act).Gambling.healthReq = 0; 
-		(*Act).Gambling.socialReq = 0;
+		
+		(*Act).Gambling.healthReq = 10; 
+		(*Act).Gambling.socialReq = 5;
 		(*Act).Gambling.hygienicReq = 0;
+		(*Act).Gambling.moneyReq = 0;
+		(*Act).Gambling.happinessReq = 0;
 		
+		(*Act).Olahraga.healthReq = 0;
+		(*Act).Olahraga.socialReq = 0;
+		(*Act).Olahraga.hygienicReq = 0;
+		(*Act).Olahraga.moneyReq = 0;
+		(*Act).Olahraga.happinessReq = 0;
 }

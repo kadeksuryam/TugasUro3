@@ -10,7 +10,7 @@ void tebakAngka(Person *Hilmys){
 	printf("Pada game ini Anda akan menebak angka oleh komputer\n");
 	printf("Pada setiap langkahnya anda mencoba menebak angka dengan memasukkan angka dari 1 sampai 10\n");
 	printf("Komputer akan merespon 'Angka tersebut kurang tinggi, silahkan pilih angka yang lebih tinggi' atau sebaliknya\n");
-	printf("Batas maksimum penebakan angka adalah 3 langkah\n");
+	printf("Batas maksimum penebakan angka adalah 4 langkah\n");
 	printf("Jika selama game, uang anda kurang, Anda otomatis akan dikeluarkan dari game\n");
 	printf("Anda boleh bertaruh uang dari minimum 1 maksimal 20 koin\n");
 	printf("Apakah Anda ingin melanjutkan? [Y/N] : ");
@@ -31,9 +31,9 @@ void tebakAngka(Person *Hilmys){
 			printf("Maaf uang anda tidak cukup untuk melanjutkan game ini :( \n");
 			return;
 		}
-		int cnt = 3;
+		int cnt = 4;
 		while(cnt){
-			printf("Silahkan masukkan angka antara 0 sampai 10: ");
+			printf("Silahkan masukkan angka dari 1 sampai 10: ");
 			int num; scanf(" %d", &num);
 			if(num == sysNum){
 				printf("Anda menang! Anda mendapatkan ");
