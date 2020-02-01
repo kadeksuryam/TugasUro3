@@ -166,7 +166,27 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 		
 }
 
+void doPemandianAirPanas(Person *Hilmys, activities *Act)
+{
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).pmdA.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).pmdA.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).pmdA.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).pmdA.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).pmdA.happinessReq));
+	if (canIt)
+	{
+		tambahStat(Hilmys, 30, 5, 20, 0,5);
+		kurangStat(Hilmys, (*Act).pmdA.healthReq , (*Act).pmdA.socialReq, (*Act).pmdA.hygienicReq, (*Act).pmdA.moneyReq, (*Act).pmdA.happinessReq);
+	}
+	return;
+}
 
+void doMemancing(Person *Hilmys, activities *Act)
+{
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).pancing.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).pancing.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).pancing.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).pancimg.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).pancing.happinessReq));
+	if (canIt)
+	{
+		tambahStat(Hilmys, 0, 5, 0, 10,5);
+		kurangStat(Hilmys, (*Act).pancing.healthReq , (*Act).pancing.socialReq, (*Act).pancing.hygienicReq, (*Act).pancing.moneyReq, (*Act).pancing.happinessReq);
+	}
+	return;
+}
 
 void doBerkunjung(Person *Hilmys, activities *Act)
 {
