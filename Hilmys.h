@@ -21,6 +21,7 @@ typedef struct{
 	ActAttribute Gambling;
 	ActAttribute Olahraga;
 	ActAttribute NontonAnime;
+	ActAttribute Quiz;
 }activities; 
 
 //Stats Hilmys's
@@ -66,10 +67,12 @@ void doBerkunjung(Person *Hilmys, activities *Act); //Social
 void doGambling(Person *Hilmys, activities *Act); //Money
 void doOlahraga(Person *Hilmys, activities *Act); //Happiness
 void doNontonAnime(Person *Hilmys, activities *Act);
+void doQuiz(Person *Hilmys, activities *Act);
 
 //Bagian Side Game
 void tebakAngka(Person *Hilmys);
 void sticksGame(Person *Hilmys);
+void soal(Person *Hilmys);
 
 
 #endif

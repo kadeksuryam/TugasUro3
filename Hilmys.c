@@ -55,6 +55,7 @@ void init(Person *Hilmys, activities *Act, int val){
 		Happiness(*Hilmys) = val;
 		//Selesai
 	//Inisialisasi Activities
+	//Sepertinya inisialisasi begini kurang berguna, tapi biarlah..
 		//inisialisasi aktivitas Tidur
 		(*Act).Tidur.healthReq = 0; 
 		(*Act).Tidur.socialReq = 0;
@@ -96,9 +97,15 @@ void init(Person *Hilmys, activities *Act, int val){
 		(*Act).Olahraga.moneyReq = 0;
 		(*Act).Olahraga.happinessReq = 0;
 		
-		(*Act).NontonAnime.healthReq = 0;
+		(*Act).NontonAnime.healthReq = 10;
 		(*Act).NontonAnime.socialReq = 0;
 		(*Act).NontonAnime.hygienicReq = 0;
 		(*Act).NontonAnime.moneyReq = 0;
 		(*Act).NontonAnime.happinessReq = 0;
+		
+		(*Act).Quiz.healthReq = 5;
+		(*Act).Quiz.socialReq = 0;
+		(*Act).Quiz.hygienicReq = 0;
+		(*Act).Quiz.moneyReq = 0;
+		(*Act).Quiz.happinessReq = 0;
 }

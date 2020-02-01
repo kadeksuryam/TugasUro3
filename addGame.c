@@ -233,3 +233,49 @@ void sticksGame(Person *Hilmys){
 		}
 	} 
 }
+
+int comb(int n, int k){
+	int res = 1;
+	if(k == n) return 1;
+	else{
+		for(int i=n;i>=k+1;i--) res *= i;
+		for(int i=1;i<=(n-k);i++) res /= i;
+	}
+	return res;
+}
+
+void soal(Person *Hilmys){
+	printf("\nSoal Pertama\n");
+	srand(time(0));
+	int jumlahBenar=0; int pilSoal2;
+	printf(" Pak Zaki memiliki n buah permen yang akan dibagikan kepada 3 orang cucunya, yaitu Abi, ");
+	printf("Bibi, dan Cibi.\n Permen yang dibagikan tidak bersisa. Dalam pembagian tersebut bisa saja ada ");
+	printf("cucu yang tidak mendapatkan permen sama sekali.\n Tentu saja, satu permen tidak bisa dibagi");
+	printf("kepada lebih dari satu orang.\n Karena Cibi merupakan cucu kesayangan Pak Zaki, maka Cibi ");
+	printf("selalu mendapat lebih dari 6 permen.\n Berapakah banyak cara Pak Zaki membagikan permen ");
+	int jumlah = rand()%4 + 12;
+	printf("%s%d%s", "tersebut ke cucu­ cucunya?, jika n bernilai ", jumlah, " : ");
+	int ans1user, ans1com = comb(jumlah-7+2, 2);
+	scanf(" %d", &ans1user);
+	if(ans1user == ans1com){
+		printf("Jawaban Anda Benar :) \n");
+		jumlahBenar++;
+	}
+	else printf("Maaf Jawaban Anda Salah :( \n");
+	printf("\nSoal Kedua\n");
+	printf("Di suatu pulau misterius terdapat 2 macam orang, prajurit dan pencuri.\n");
+	printf("Sang prajurit selalu berkata jujur dan sang pencuri selalu berkata bohong.\n");
+	printf("Suatu hari Anda bertemu tiga orang yang berkata seperti berikut:\n");
+	printf("A: Hanya satu diantara kami yang merupakan prajurit\n");
+    printf("B: Setidaknya satu dari antara kita adalah prajurit\n");
+    printf("C: A bukanlah prajurit\n");
+    printf("Dari ketiga orang tersebut, berapa banyak yang merupakan prajurit? : ");
+	scanf(" %d", &pilSoal2);
+	if(pilSoal2 == 2){
+		printf("Jawaban anda benar :)");;
+		jumlahBenar++;
+	}
+	else printf("Jawaban anda Salah :( \n");
+	kurangStat(Hilmys, 5, 0, 0, 0, 0); 
+	tambahStat(Hilmys, 0, 0, 0, 10*jumlahBenar, 0);
+}

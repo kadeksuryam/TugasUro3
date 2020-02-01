@@ -24,7 +24,7 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			printf("1. Tidur         2. Makan\n");
 			printf("3. MCK           4. Berkunjung\n");
 			printf("5. Gambling      6. Olahraga\n");
-			printf("7. Nonton Anime  8. \n");
+			printf("7. Nonton Anime  8. Quiz\n");
 			printf("0. Stats\n");
 			printf("11. Poin Setiap Kegiatan\n");
 			printf("Pilihan Anda [dalam angka diatas]: ");
@@ -68,24 +68,27 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			else if(pil == 5) doGambling(Hilmys, Act);	
 			else if(pil == 6) doOlahraga(Hilmys, Act);
 			else if(pil == 7) doNontonAnime(Hilmys, Act);
+			else if(pil == 8) doQuiz(Hilmys, Act);
 			else if(pil == 0) printStat(Hilmys, Act);
 			else if(pil == 11){
 				//Dokumentasi aturan poin
-				printf("=============================================================== \n");
-				printf("| Kegiatan         | HR | SR | HGR | MR | HPR | Gain Poin      | \n");
-				printf("| Tidur            | 0  | 0  |  0  | 0  |  0  | 5H             | \n");
-				printf("| Makan Mie Instan | 5  | 0  |  0  | 5  |  0  | 10H            | \n");
-				printf("| Makan Nasi Uduk  | 5  | 0  |  0  | 10 |  0  | 15H            | \n");
-				printf("| Makan Ramen      | 5  | 0  |  0  | 15 |  0  | 20H            | \n");
-				printf("| MCK              | 5  | 0  |  0  | 5  |  0  | 5H, 20HG       | \n");
-				printf("| Berkunjung       | 0  | 0  |  5  | 5  |  0  | 30S            | \n");
-				printf("| Gambling         | 10 | 5  |  0  | 0  |  0  | (userbet)M     | \n");
-				printf("| Jalan Santai     | 5  | 0  |  0  | 0  |  0  | 5H, 5HP        | \n");
-				printf("| Lari Keliling    | 10 | 0  |  0  | 0  |  0  | 10H, 10HP      | \n");
-				printf("| Bermain Catur    | 5  | 0  |  0  | 0  |  0  | 10HP           | \n");
-				printf("| CP (Win)         | 10 | 0  |  0  | 0  |  0  | 10H, 20HP      | \n");
-				printf("| CP (Lost)        | 10 | 0  |  0  | 0  |  0  | 5H, 5HP        | \n");
-				printf("================================================================ \n");
+				printf("====================================================================\n");
+				printf("| Kegiatan         | HR | SR | HGR | MR     | HPR | Gain Poin      | \n");
+				printf("| Tidur            | 0  | 0  |  0  | 0      |  0  | 5H             | \n");
+				printf("| Makan Mie Instan | 5  | 0  |  0  | 5      |  0  | 10H            | \n");
+				printf("| Makan Nasi Uduk  | 5  | 0  |  0  | 10     |  0  | 15H            | \n");
+				printf("| Makan Ramen      | 5  | 0  |  0  | 15     |  0  | 20H            | \n");
+				printf("| MCK              | 5  | 0  |  0  | 5      |  0  | 5H, 20HG       | \n");
+				printf("| Berkunjung       | 0  | 0  |  5  | 5      |  0  | 30S            | \n");
+				printf("| Gambling         | 10 | 5  |  0  | 0      |  0  | (userbet)M     | \n");
+				printf("| Jalan Santai     | 5  | 0  |  0  | 0      |  0  | 5H, 5HP        | \n");
+				printf("| Lari Keliling    | 10 | 0  |  0  | 0      |  0  | 10H, 10HP      | \n");
+				printf("| Bermain Catur    | 5  | 0  |  0  | 0      |  0  | 10HP           | \n");
+				printf("| CP (Win)         | 10 | 0  |  0  | 0      |  0  | 10H, 20HP      | \n");
+				printf("| CP (Lost)        | 10 | 0  |  0  | 0      |  0  | 5H, 5HP        | \n");
+				printf("| Nonton Anime     | 10 | 0  |  0  | 10/15  |  0  | (-10 to 15)HP  | \n");
+				printf("| Quiz             | 5  | 0  |  0  | 0      |  0  | (10 to 20)M    | \n");
+				printf("==================================================================== \n");
 				printf("\n");
 				printf("Keterangan: \n");
 				printf("H = Hygienic, S = Social, HG = Hygienic, M = Money, HP = Happiness\n");
@@ -336,7 +339,7 @@ void doOlahraga(Person *Hilmys, activities *Act){
 
 void doNontonAnime(Person *Hilmys, activities *Act){
 	int pil;
-	if((*Hilmys).health < 10){
+	if((*Hilmys).health < (*Act).NontonAnime.healthReq){
 		printf("=====Hilmys tidak cukup sehat untuk menonton anime :( =====\n");
 		return;
 	}
@@ -368,7 +371,7 @@ void doNontonAnime(Person *Hilmys, activities *Act){
 		}
 	}
 	else if(pil == 3){
-		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		if((*Hilmys).money < 15) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
 		else{
 			printf("=====Hilmys selesai menonton Danshi Koukousei no Nichijou=====\n");
 			printf("=====Karena anime ini sangat lucu, happiness dari Hilmys pun bertambah 15=====");
@@ -377,7 +380,7 @@ void doNontonAnime(Person *Hilmys, activities *Act){
 		}
 	}
 	else if(pil == 4){
-		if((*Hilmys).money < 10) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
+		if((*Hilmys).money < 15) printf("=====Uang Hilmys tidak mencukupi untuk membeli tiket anime tersebut :( =====\n");
 		else{
 			printf("=====Hilmys selesai menonton Death Note=====\n");
 			printf("=====Karena anime ini sangat suram, happiness dari Hilmys pun berkurang 10=====");
@@ -386,4 +389,12 @@ void doNontonAnime(Person *Hilmys, activities *Act){
 		}
 	}
 	printf("\n");
+}
+
+void doQuiz(Person *Hilmys, activities *Act){
+	if((*Hilmys).health< (*Act).Quiz.healthReq) printf("Hilmys tidak cukup sehat untuk Quiz :(\n");
+	else{
+		soal(Hilmys);
+		printf("=====Quiz Sudah Selesai=====\n");	
+	}
 }
