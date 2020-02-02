@@ -4,11 +4,11 @@ Game ini merupakan game simulasi kehidupan Hilmys.
 
 ### Prerequisites
 
-Cara Compile dan Run di Linux atau Mac OS
+How to Compile and Run in Linux or Mac OS
 
 ```
- $gcc addGame.c Hilmys.c Hilmys.h Kegiatan.c main.c -o main
- $./main
+ $ gcc addGame.c Hilmys.c Hilmys.h Kegiatan.c main.c -o main
+ $ ./main
 ```
 ![](howtocompileandrun.gif)
 
