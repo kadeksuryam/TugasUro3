@@ -272,7 +272,7 @@ void soal(Person *Hilmys){
     printf("Dari ketiga orang tersebut, berapa banyak yang merupakan prajurit? : ");
 	scanf(" %d", &pilSoal2);
 	if(pilSoal2 == 2){
-		printf("Jawaban anda benar :)");;
+		printf("Jawaban anda benar :) \n");;
 		jumlahBenar++;
 	}
 	else printf("Jawaban anda Salah :( \n");

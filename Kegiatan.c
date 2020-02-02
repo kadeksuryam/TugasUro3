@@ -5,9 +5,7 @@
 #include "Hilmys.h"
 
 //inisialisasi karena kedua variabel ini bersyarat stats
-bool sudahMakan = false;
-bool sudahMCK = false;
-
+bool sudahMCK=true, sudahMakan = true;
 int mini(int a, int b){
 	if(a <= b) return a;
 	else return b;
@@ -25,8 +23,8 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			printf("3. MCK           4. Berkunjung\n");
 			printf("5. Gambling      6. Olahraga\n");
 			printf("7. Nonton Anime  8. Quiz\n");
-			printf("0. Stats\n");
-			printf("11. Poin Setiap Kegiatan\n");
+			printf("9. Memancing     10. Pergi ke HotSpring\n");
+			printf("0. Stats         11. Poin Setiap Kegiatan\n");
 			printf("Pilihan Anda [dalam angka diatas]: ");
 			scanf("%d", &pil);
 		//=============If else berbagai kegiatan=========
@@ -63,32 +61,42 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			}
 			else if(pil == 4){
 				doBerkunjung(Hilmys, Act);
-				printf("=====Berkunjung ke rumah tetangga sudah selesai!=====");
+				printf("=====Berkunjung ke rumah tetangga sudah selesai!\n=====");
 			}
 			else if(pil == 5) doGambling(Hilmys, Act);	
 			else if(pil == 6) doOlahraga(Hilmys, Act);
 			else if(pil == 7) doNontonAnime(Hilmys, Act);
 			else if(pil == 8) doQuiz(Hilmys, Act);
+			else if(pil == 9){
+				 doMemancing(Hilmys, Act);
+				 printf("=====Memancing sudah selesai!\n=====");
+			}
+			else if(pil == 10){
+				 doPemandianAirPanas(Hilmys, Act);
+				 printf("=====Mandi di Pemandian Air Panas sudah selesai!=====");
+			}
 			else if(pil == 0) printStat(Hilmys, Act);
 			else if(pil == 11){
 				//Dokumentasi aturan poin
-				printf("====================================================================\n");
-				printf("| Kegiatan         | HR | SR | HGR | MR     | HPR | Gain Poin      | \n");
-				printf("| Tidur            | 0  | 0  |  0  | 0      |  0  | 5H             | \n");
-				printf("| Makan Mie Instan | 5  | 0  |  0  | 5      |  0  | 10H            | \n");
-				printf("| Makan Nasi Uduk  | 5  | 0  |  0  | 10     |  0  | 15H            | \n");
-				printf("| Makan Ramen      | 5  | 0  |  0  | 15     |  0  | 20H            | \n");
-				printf("| MCK              | 5  | 0  |  0  | 5      |  0  | 5H, 20HG       | \n");
-				printf("| Berkunjung       | 0  | 0  |  5  | 5      |  0  | 30S            | \n");
-				printf("| Gambling         | 10 | 5  |  0  | 0      |  0  | (userbet)M     | \n");
-				printf("| Jalan Santai     | 5  | 0  |  0  | 0      |  0  | 5H, 5HP        | \n");
-				printf("| Lari Keliling    | 10 | 0  |  0  | 0      |  0  | 10H, 10HP      | \n");
-				printf("| Bermain Catur    | 5  | 0  |  0  | 0      |  0  | 10HP           | \n");
-				printf("| CP (Win)         | 10 | 0  |  0  | 0      |  0  | 10H, 20HP      | \n");
-				printf("| CP (Lost)        | 10 | 0  |  0  | 0      |  0  | 5H, 5HP        | \n");
-				printf("| Nonton Anime     | 10 | 0  |  0  | 10/15  |  0  | (-10 to 15)HP  | \n");
-				printf("| Quiz             | 5  | 0  |  0  | 0      |  0  | (10 to 20)M    | \n");
-				printf("==================================================================== \n");
+				printf("=======================================================================\n");
+				printf("| Kegiatan         | HR | SR | HGR | MR     | HPR | Gain Poin         | \n");
+				printf("| Tidur            | 0  | 0  |  0  | 0      |  0  | 5H                | \n");
+				printf("| Makan Mie Instan | 5  | 0  |  0  | 5      |  0  | 10H               | \n");
+				printf("| Makan Nasi Uduk  | 5  | 0  |  0  | 10     |  0  | 15H               | \n");
+				printf("| Makan Ramen      | 5  | 0  |  0  | 15     |  0  | 20H               | \n");
+				printf("| MCK              | 5  | 0  |  0  | 5      |  0  | 5H, 20HG          | \n");
+				printf("| Berkunjung       | 0  | 0  |  5  | 5      |  0  | 30S               | \n");
+				printf("| Gambling         | 10 | 5  |  0  | 0      |  0  | (userbet)M        | \n");
+				printf("| Jalan Santai     | 5  | 0  |  0  | 0      |  0  | 5H, 5HP           | \n");
+				printf("| Lari Keliling    | 10 | 0  |  0  | 0      |  0  | 10H, 10HP         | \n");
+				printf("| Bermain Catur    | 5  | 0  |  0  | 0      |  0  | 10HP              | \n");
+				printf("| CP (Win)         | 10 | 0  |  0  | 0      |  0  | 10H, 20HP         | \n");
+				printf("| CP (Lost)        | 10 | 0  |  0  | 0      |  0  | 5H, 5HP           | \n");
+				printf("| Nonton Anime     | 10 | 0  |  0  | 10/15  |  0  | (-10 to 15)HP     | \n");
+				printf("| Quiz             | 5  | 0  |  0  | 0      |  0  | (10 to 20)M       | \n");
+				printf("| Memancing        | 5  | 0  |  5  | 0      |  0  | 5S,10M,5HP        | \n");
+				printf("| Hot Spring       | 0  | 0  |  0  | 15     |  0  | 30H, 5S, 20H, 5HP | \n");      
+				printf("======================================================================= \n");
 				printf("\n");
 				printf("Keterangan: \n");
 				printf("H = Hygienic, S = Social, HG = Hygienic, M = Money, HP = Happiness\n");
@@ -101,24 +109,28 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			}
 			else printf("Pilihan yang anda masukkan salah silahkan pilih kegiatan kembali\n");
 			
+			if(cekWinning(Hilmys)){
+				printf("\n\n");
+				printf("======= HURRAY!, SELAMAT ANDA MEMENANGKAN GAME INI :) ========\n");
+				return;
+			}
+			
 		//===========KEGIATAN BASED HEALTH==================
 			time_t end = time(NULL);
 			//================PRASYARAT UNTUK TIDUR===================
 			//Jika sudah durasi sebelum tidur sudah 5 menit Hilmys harus tidur
 			if((int)difftime(end, snt_tidur) >= 300){
 				char pil;
-				printf(" %d%s", (int)difftime(end, start)/60, " menit sudah lewat, Hilmys mengantuk dan perlu tidur untuk kesehatannya!\n");
+				printf(" %d%s", (int)difftime(end, snt_tidur)/60, " menit sudah lewat, Hilmys mengantuk dan perlu tidur untuk kesehatannya!\n");
 				printf("Jika tidak tidur tingkat kesehatan hilmy akan berkurang 1 setiap detiknya!\n");
 				printf("Pilih Y jika setuju untuk tidur dan N untuk tidak \n");
 				scanf(" %c", &pil);
 				if(pil == 'Y'){
 					doTidur(Hilmys, Act);
+					snt_tidur = time(NULL);
 					printf("Tidur sudah selesai\n");
 				}
-				else{
-					 snt_tidur = time(NULL);
-					 cekTidur = false;
-				}
+				else cekTidur = false;
 			}
 			//Jika tidak tidur setiap <= menit, Health hilmy akan berkurang 1 setiap detiknya	
 			if(!cekTidur) (*Hilmys).health -= 1;
@@ -127,16 +139,16 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			//Jika durasi sebelum makan sudah 3 menit maka Hilmys harus makan
 			if((int)difftime(end, snt_makan) >= 180){
 				char pil;
-				printf("%d%s", (int)difftime(end, start)/60, " menit sudah lewat, Hilmys perlu makan untuk kesehatannya!\n");
+				printf("%d%s", (int)difftime(end, snt_makan)/60, " menit sudah lewat, Hilmys perlu makan untuk kesehatannya!\n");
 				printf("Jika tidak makan tingkat kesehatan hilmy akan berkurang 1 setiap detiknya!\n");
 				printf("Pilih Y jika setuju untuk makan dan N untuk tidak \n");
 				scanf(" %c", &pil);
-				if(pil == 'Y') doMakan(Hilmys, Act);
-				else{
-					 snt_makan = time(NULL);
-					cekMakan = false;
-
+				if(pil == 'Y'){
+					doMakan(Hilmys, Act);
+					snt_makan = time(NULL);
 				}
+				else cekMakan = false;
+				
 			}
 			//Jika makan tidur setiap <= menit, Health hilmy akan berkurang 1 setiap detiknya
 			if(!cekMakan) (*Hilmys).health -= 1;
@@ -144,18 +156,18 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 			//Jika durasi sebelum makan sudah 4 menit maka Hilmys harus makan
 			if((int)difftime(end, snt_mck) >= 240){
 				char pil;
-				printf("%d%s", (int)difftime(end, start)/60, " menit sudah lewat, Hilmys sakit perut dan perlu MCK untuk kesehatannya!\n");
+				printf("%d%s", (int)difftime(end, snt_mck)/60, " menit sudah lewat, Hilmys sakit perut dan perlu MCK untuk kesehatannya!\n");
 				printf("Jika tidak MCK tingkat kesehatan hilmy akan berkurang 1 setiap detiknya!\n");
 				printf("Pilih Y jika setuju untuk MCK dan N untuk tidak \n");
 				scanf(" %c", &pil);
-				if(pil == 'Y') doMCK(Hilmys, Act);
-				else{
-					 snt_mck = time(NULL);
-					 cekMCK = false;
+				if(pil == 'Y'){
+					doMCK(Hilmys, Act);
+					snt_mck = time(NULL);
 				}
+				else cekMCK = false;
 			}
 			//Jika makan tidur setiap <= menit, Health hilmy akan berkurang 1 setiap detiknya
-			if(!cekMakan) (*Hilmys).health -= 1;
+			if(!cekMCK) (*Hilmys).health -= 1;
 		//=================PRASYARAT WAKTU BERMAIN=================
 			//Jika waktu bermain user sudah 15 menit otomatis kalah
 			if((int)difftime(end, start) >= 900){
@@ -166,7 +178,27 @@ void pilihKegiatan(Person *Hilmys, activities *Act){
 		
 }
 
+void doPemandianAirPanas(Person *Hilmys, activities *Act)
+{
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).pmdA.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).pmdA.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).pmdA.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).pmdA.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).pmdA.happinessReq));
+	if (canIt)
+	{
+		tambahStat(Hilmys, 30, 5, 20, 0,5);
+		kurangStat(Hilmys, (*Act).pmdA.healthReq , (*Act).pmdA.socialReq, (*Act).pmdA.hygienicReq, (*Act).pmdA.moneyReq, (*Act).pmdA.happinessReq);
+	}
+	return;
+}
 
+void doMemancing(Person *Hilmys, activities *Act)
+{
+	bool canIt = (isEnoughStat(Health(*Hilmys), (*Act).pancing.healthReq) && isEnoughStat(Social(*Hilmys), (*Act).pancing.socialReq) && isEnoughStat(Hygienic(*Hilmys), (*Act).pancing.hygienicReq) && isEnoughStat(Money(*Hilmys), (*Act).pancing.moneyReq) && isEnoughStat(Happiness(*Hilmys), (*Act).pancing.happinessReq));
+	if (canIt)
+	{
+		tambahStat(Hilmys, 0, 5, 0, 10,5);
+		kurangStat(Hilmys, (*Act).pancing.healthReq , (*Act).pancing.socialReq, (*Act).pancing.hygienicReq, (*Act).pancing.moneyReq, (*Act).pancing.happinessReq);
+	}
+	return;
+}
 
 void doBerkunjung(Person *Hilmys, activities *Act)
 {
